@@ -27,6 +27,14 @@ let getJoke = () => {
           let randomJoke = JSON.parse(xhr.responseText);
           /* GET THE JOKE:actualJoke pair */
           let readyJoke = randomJoke.joke;
+          /* IN CASE OF AN ERROR */
+          if (randomJoke.error == "true") {
+            readyJoke = "Jumbo - the monkey coming up with the jokes got tired. :( Please try again later when he is ready. Sorry for the inconvenince..";
+          }
+          else {
+            readyJoke = randomJoke.joke;
+          }
+
           document.getElementById("joke").innerHTML = readyJoke;
         }
       };
